@@ -18,6 +18,7 @@ class App{
             require_once $archivoController;
             $controller = new Main();
             $controller->loadmodel('main');
+            $controller->render();
             return false;
         }
         // creamos la ruta para encontrar el archivo de controlador de acuerdo a la url, ej. controllers/main.php
@@ -26,7 +27,7 @@ class App{
         if(file_exists($archivoController)){
             // requerimos el archivo
             require_once $archivoController;
-            // creamos un objeto de la clase del controlador
+            // creamos un objeto de la clase del controlador para inicializarlo
             $controller = new $url[0];
             // llamada al modelo
             $controller->loadmodel($url[0]);
@@ -35,6 +36,10 @@ class App{
             if (isset($url[1])){
                 // llamar al metodo
                 $controller->{$url[1]}();
+            }
+            else{
+                //si no existe metodo cargue el view del controlador
+                $controller->render();
             }
         }
         else{

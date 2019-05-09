@@ -16,7 +16,7 @@ class NuevoModel extends Model {
                     'direccion' => $datos['direccion'], 'ciudad' => $datos['ciudad'], 'telefono' => $datos['telefono']
                 ]);
         }catch (PDOException $e){
-            echo "Error: ".$e->getMessage();
+           // echo "Error: ".$e->getMessage();
         }
 
 
